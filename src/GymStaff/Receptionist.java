@@ -37,8 +37,8 @@ public class Receptionist implements Subject {
                 JOptionPane.QUESTION_MESSAGE, null, new String[]{"By name","By personal number","Cancel"},"By personal number");
 
         switch (choice) {
-            case 1 -> inputObject = new InputObject(JOptionPane.showInputDialog("Please enter name"), InputType.NAME);
-            case 2 -> inputObject = new InputObject(JOptionPane.showInputDialog("Please enter your personal number"), InputType.PERSONAL_NUMBER);
+            case 0 -> inputObject = new InputObject(JOptionPane.showInputDialog("Please enter name"), InputType.NAME);
+            case 1 -> inputObject = new InputObject(JOptionPane.showInputDialog("Please enter your personal number"), InputType.PERSONAL_NUMBER);
         }
     }
 

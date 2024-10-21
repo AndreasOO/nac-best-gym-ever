@@ -7,4 +7,6 @@ public class PayingMember extends Person {
         super(name, personalNumber);
         membershipCategorizer = new PayingMemberCategory();
     }
+
+
 }

@@ -21,4 +21,28 @@ public abstract class Person {
     public String getPersonalNumber() {
         return personalNumber;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Person)) {
+            return false;
+        }
+        Person person = (Person) o;
+        return name.equals(person.name) && personalNumber.equals(person.personalNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + personalNumber.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Name: %s, Personal number: %s", getName(), getPersonalNumber());
+    }
 }
