@@ -1,6 +1,6 @@
 package GymStaff;
 
-import PersonsCreation.MembershipCategorizer;
+import PersonsCreation.PayingMember;
 import PersonsCreation.Person;
 
 import javax.swing.*;
@@ -120,14 +120,24 @@ public class Receptionist implements Subject {
         return authorizationMessage;
     }
 
+    public Person getAuthorizedPerson() {
+        return authorizedPerson;
+    }
+
     public void registerObserver(Observer o) {
-        System.out.println("registering observer");
+        observers.add(o);
     }
     public void removeObserver(Observer o) {
-        System.out.println("removing observer");
+        observers.remove(o);
     }
     public void notifyObservers() {
-        System.out.println("notifying observers");
+        if (authorizedPerson instanceof PayingMember) {
+            System.out.println("Notifying observers");
+            for (Observer o : observers) {
+                o.update();
+            }
+        }
+
     }
 
 

@@ -18,8 +18,9 @@ public class Main {
 
         Receptionist receptionist = new Receptionist(memberslist);
 
-        Trainer trainer = new Trainer();
+        Trainer trainer = new Trainer(Paths.get("src/GymStaff/workout-tracker-log.txt"), receptionist);
 
+        receptionist.registerObserver(trainer);
         receptionist.attendVisitor();
 
 
