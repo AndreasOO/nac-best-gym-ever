@@ -1,4 +1,5 @@
 import GymStaff.Receptionist;
+import GymStaff.Trainer;
 import MembersList.MembersFileParser;
 import PersonsCreation.Person;
 import PersonsCreation.PersonsCreator;
@@ -16,6 +17,8 @@ public class Main {
         List<Person> memberslist = parser.getMembersList();
 
         Receptionist receptionist = new Receptionist(memberslist);
+
+        Trainer trainer = new Trainer();
 
         receptionist.attendVisitor();
 

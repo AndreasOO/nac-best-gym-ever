@@ -4,6 +4,7 @@ import PersonsCreation.MembershipCategorizer;
 import PersonsCreation.Person;
 
 import javax.swing.*;
+import java.io.EOFException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +18,8 @@ public class Receptionist implements Subject {
 
 
     public Receptionist(List<Person> membersList) {
-        observers = new ArrayList<>();
-        //TODO create memberslist singelton pattern
+        this.observers = new ArrayList<>();
         this.membersList = membersList;
-
     }
 
     public void attendVisitor() {
@@ -29,6 +28,7 @@ public class Receptionist implements Subject {
         createAuthorizationMessage();
         showAuthorizationMessage();
         notifyObservers();
+        tryAgainOrExit();
     }
 
     public void getUserInput() {
@@ -36,10 +36,31 @@ public class Receptionist implements Subject {
                 "Membership validation", JOptionPane.DEFAULT_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, new String[]{"By name","By personal number","Cancel"},"By personal number");
 
-        switch (choice) {
-            case 0 -> inputObject = new InputObject(JOptionPane.showInputDialog("Please enter name"), InputType.NAME);
-            case 1 -> inputObject = new InputObject(JOptionPane.showInputDialog("Please enter your personal number"), InputType.PERSONAL_NUMBER);
+        try {
+            switch (choice) {
+                case 0 -> inputObject = getInputByName();
+                case 1 -> inputObject = getInputByPersonNumber();
+                case 2 -> System.exit(0);
+                default -> System.exit(0);
+            }
+        } catch (EOFException e) {
+            tryAgainOrExit();
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            tryAgainOrExit();
         }
+    }
+
+    private InputObject getInputByName() throws EOFException, IllegalArgumentException {
+        InputObject input = new InputObject(JOptionPane.showInputDialog("Please enter name"), InputType.NAME);
+        input.validateInput();
+        return input;
+    }
+
+    private InputObject getInputByPersonNumber() throws EOFException, IllegalArgumentException {
+        InputObject input = new InputObject(JOptionPane.showInputDialog("Please enter your personal number"), InputType.PERSONAL_NUMBER);
+        input.validateInput();
+        return input;
     }
 
     protected void checkAuthorization(InputObject inputObject) {
@@ -78,6 +99,21 @@ public class Receptionist implements Subject {
 
     private void showAuthorizationMessage() {
         JOptionPane.showMessageDialog(null, getAuthorizationMessage());
+    }
+
+
+    private void tryAgainOrExit() {
+        int choice = JOptionPane.showOptionDialog(null, "Do you want to validate another member?",
+                "Membership validation", JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, new String[]{"Try again","Exit"},"Try again");
+
+
+        switch (choice) {
+            case 0 -> attendVisitor();
+            case 1 -> System.exit(0);
+            default -> System.exit(0);
+        }
+
     }
 
     public String getAuthorizationMessage() {
