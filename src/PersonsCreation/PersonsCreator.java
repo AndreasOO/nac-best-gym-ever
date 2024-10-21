@@ -15,7 +15,4 @@ public class PersonsCreator {
         return new ExMember(name, personNumber);
     }
 
-    public static UnauthorizedPerson createUnauthorizedPerson(String name, String personNumber) {
-        return new UnauthorizedPerson(name, personNumber);
-    }
 }
