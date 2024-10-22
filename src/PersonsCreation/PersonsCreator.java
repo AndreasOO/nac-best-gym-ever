@@ -14,5 +14,4 @@ public class PersonsCreator {
     public static ExMember createExMember(String name, String personNumber) {
         return new ExMember(name, personNumber);
     }
-
 }
