@@ -4,6 +4,7 @@ import MembersList.MembersFileParser;
 import PersonsCreation.Person;
 import PersonsCreation.PersonsCreator;
 
+import javax.swing.*;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,10 +15,11 @@ public class Main {
         MembersFileParser parser = new MembersFileParser(Paths.get("src/MembersList/customer-data.txt"));
         parser.parseFile(LocalDate.now());
 
+
         List<Person> memberslist = parser.getMembersList();
 
-        Receptionist receptionist = new Receptionist(memberslist);
 
+        Receptionist receptionist = new Receptionist(memberslist);
         Trainer trainer = new Trainer(Paths.get("src/GymStaff/workout-tracker-log.txt"), receptionist);
 
         receptionist.registerObserver(trainer);
