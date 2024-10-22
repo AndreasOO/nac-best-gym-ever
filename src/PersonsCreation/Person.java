@@ -1,5 +1,9 @@
 package PersonsCreation;
 
+/**
+ * Abstract class for members, uses Strategy pattern to prepare for additions and changes of membership categories
+ * and their desired behaviors through the MembershipCategorizer.
+ */
 public abstract class Person {
     private final String name;
     private final String personalNumber;

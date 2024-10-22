@@ -2,6 +2,7 @@ package GymStaff;
 
 import PersonsCreation.Person;
 
+import javax.swing.*;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -34,5 +35,6 @@ public class Trainer implements Observer {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+
     }
 }

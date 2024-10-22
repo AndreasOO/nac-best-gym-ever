@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MembersFileParserTest {
 
 
-    // TODO set localDate object with 2024-10-21 and use that as benchmark for tests in testdata.
+
     @Test
     void parseFile() {
         Path file = Paths.get("test/MembersList/customer-test-data.txt");

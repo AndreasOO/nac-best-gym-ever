@@ -132,7 +132,6 @@ public class Receptionist implements Subject {
     }
     public void notifyObservers() {
         if (authorizedPerson instanceof PayingMember) {
-            System.out.println("Notifying observers");
             for (Observer o : observers) {
                 o.update();
             }
