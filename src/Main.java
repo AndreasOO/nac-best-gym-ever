@@ -2,12 +2,8 @@ import GymStaff.Receptionist;
 import GymStaff.Trainer;
 import MembersList.MembersFileParser;
 import PersonsCreation.Person;
-import PersonsCreation.PersonsCreator;
-
-import javax.swing.*;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
